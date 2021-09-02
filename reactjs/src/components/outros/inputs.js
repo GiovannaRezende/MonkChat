@@ -7,7 +7,7 @@ const ChatButton = styled.button`
     color: #fff;
     background: #50B4BF;
 
-    border: none;
+    border:none;
     border-radius: 20px;
 
     padding: .5em 1.65em;
@@ -43,6 +43,8 @@ const ChatTextArea = styled.textarea`
 
     height: 12em;
     margin: .5em 0em;
+
+    resize: none;
 `
 
 export { ChatButton, ChatInput, ChatTextArea }

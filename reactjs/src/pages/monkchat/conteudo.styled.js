@@ -112,6 +112,8 @@ const ContainerConteudo = styled.div`
 
         font-size: .9em;
         margin: .4em .2em;
+
+        align-items: center;
     }
 
     .chat-message > div {
