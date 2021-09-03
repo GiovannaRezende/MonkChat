@@ -10,7 +10,7 @@ import { useState, useRef } from 'react';
 
 import { useHistory } from 'react-router-dom'
 
-import Cookies, { set } from "js-cookie"
+import Cookies from "js-cookie"
 
 import Api from '../../service/api';
 const api = new Api();
@@ -32,7 +32,7 @@ export default function Conteudo() {
     const navigation = useHistory();
     let usuarioLogado = lerUsuarioLogado(navigation) || {};
 
-    const [idAlterarndo, setIdAlterando] = useState(0);
+    const [idAlterando, setIdAlterando] = useState(0);
     const [chat, setChat] = useState([]);
     const [sala, setSala] = useState('');
     const [usu, setUsu] = useState(usuarioLogado.nm_usuario);
@@ -60,12 +60,12 @@ export default function Conteudo() {
     }
 
     const enviarMensagem = async (event) => {
-        if(event.type === "keypress" && (!event.ctrlKey || event.charCode !== 13 )) 
+        if(event.type === "keypress" && !(event.ctrlKey || event.charCode === 13 )) 
         return;
 
-        if(idAlterarndo > 0) {
+        if(idAlterando > 0) {
 
-        const resp = await api.alterarMensagem(idAlterarndo, msg);
+        const resp = await api.alterarMensagem(idAlterando, msg);
         if (!validarResposta(resp)) 
             return;
         
@@ -74,7 +74,7 @@ export default function Conteudo() {
         setMsg('');
 
         } else {
-            const resp = await api.inserirMensagem(sala,usu,msg);
+            const resp = await api.inserirMensagem(sala, usu, msg);
             if(!validarResposta(resp)) 
             return;
 
